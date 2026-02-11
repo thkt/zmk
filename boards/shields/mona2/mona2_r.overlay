@@ -9,7 +9,9 @@
     device = <&trackball_central>; // デバイスを正しく紐付け
     
     /* 通常カーソル移動用の runtime input processor */
-    input-processors = <&mouse_runtime_input_processor>;
+    input-processors =
+        <&zip_xy_transform INPUT_TRANSFORM_Y_INVERT>,
+        <&mouse_runtime_input_processor>;
 
     /* Layer 2 をスクロールレイヤーにする設定 */
     scroller {
