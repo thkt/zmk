@@ -89,7 +89,6 @@
     trackball_listener: trackball_listener {
         compatible = "zmk,input-listener";
         status = "disabled";
-        device = <&trackball_central>;
         input-processors = 
             <&zip_xy_transform INPUT_TRANSFORM_Y_INVERT>;         //Y軸反転
             //<&zip_xy_transform INPUT_TRANSFORM_XY_SWAP>,        //X軸とY軸の入れ替え
