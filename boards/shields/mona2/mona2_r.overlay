@@ -4,6 +4,23 @@
 #include <behaviors/battery_history_request.dtsi>
 #include <zephyr/dt-bindings/input/input-event-codes.h>
 
+/ {
+    /* Runtime Input Processor ベースのトラックボールリスナ */
+    trackball_listener: trackball_listener {
+        compatible = "zmk,input-listener";
+        device = <&trackball_central>;
+        /* 通常カーソル移動用の runtime input processor */
+        input-processors = <&mouse_runtime_input_processor>;
+
+        /* Layer 2 をスクロールレイヤーにする例（必要に応じて番号変更） */
+        scroller {
+            layers = <2>;
+            input-processors =
+                <&zip_xy_to_scroll_mapper &scroll_runtime_input_processor>;
+        };
+    };
+};
+
 
 &default_transform {
     col-offset = <6>;
@@ -62,22 +79,4 @@
         x-input-code = <INPUT_REL_X>;
         y-input-code = <INPUT_REL_Y>;
     };
-};
-
-
-// Overrides for the input listener node
-&trackball_central_listener {
-    status = "okay";
-    device = <&trackball_central>;
-
-    scroller {
-        layers = <2>;
-        input-processors = 
-            // <&zip_xy_transform INPUT_TRANSFORM_XY_SWAP>,        //X軸とY軸の入れ替え
-            <&zip_xy_transform INPUT_TRANSFORM_X_INVERT>,       //X軸反転
-            <&zip_xy_to_scroll_mapper>,                         //スクロールモードに変更
-            <&zip_scroll_transform INPUT_TRANSFORM_X_INVERT>,   //スクロールのX軸反転
-            <&zip_scroll_scaler 1 5>;                           //スクロール量を1/4倍
-    };
-
 };
