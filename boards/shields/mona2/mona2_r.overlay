@@ -8,7 +8,7 @@
     /* Runtime Input Processor ベースのトラックボールリスナ */
     trackball_listener: trackball_listener {
         compatible = "zmk,input-listener";
-        device = <&trackball_central>;
+        device = <&trackball>;
         /* 通常カーソル移動用の runtime input processor */
         input-processors = <&mouse_runtime_input_processor>;
 
