@@ -22,6 +22,14 @@ config PMW3610
     bool
     default y
 
+config PMW3610_INVERT_X
+    bool "Invert Trackball X"
+    default n
+
+config PMW3610_INVERT_Y
+    bool "Invert Trackball Y"
+    default n
+
 endif
 
 if SHIELD_MONA2_R || SHIELD_MONA2_L
@@ -39,5 +47,9 @@ config RGBLED_WIDGET_BATTERY_LEVEL_HIGH
 config RGBLED_WIDGET_BATTERY_LEVEL_CRITICAL
     int "Battery Critical Level"
     default 10
+
+config RGBLED_WIDGET_SHOW_LAYER_COLORS
+    bool "Show Layer Colors"
+    default y
 
 endif
