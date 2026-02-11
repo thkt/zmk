@@ -50,11 +50,12 @@
 &kp Q           &kp W             &kp E         &kp R    &kp T                                                                              &kp Y        &kp U  &kp I      &kp O      &kp P
 &kp A           &kp S             &kp D         &kp F    &kp G                                            &lt 4 RIGHT_ALT                   &kp H        &kp J  &kp K      &kp L      &kp MINUS
 &kp Z           &kp X             &kp C         &kp V    &kp B                        &trans              &trans                            &kp N        &kp M  &mkp LCLK  &mkp RCLK  &kp COMMA
-&kp LEFT_SHIFT  &kp LEFT_CONTROL  &kp LEFT_ALT  &kp TAB  &mt LEFT_COMMAND LANGUAGE_1  &lt 2 LANGUAGE_2    &mt RS(RA(RC(RIGHT_GUI))) ESCAPE  &lt 1 SPACE                               &kp PERIOD
-            >;
+&kp LEFT_SHIFT  &kp LEFT_CONTROL  &kp LEFT_ALT  &kp TAB  &mt LEFT_COMMAND LANGUAGE_1  &lt 2 LANGUAGE_2    &mt RS(RA(RC(RIGHT_GUI))) ESCAPE  &lt 1 SPACE   &studio_unlock                  &kp PERIOD
+    >;
 
             sensor-bindings = <&scroll_up_down>;
         };
+
 
         layer_1 {
             bindings = <
