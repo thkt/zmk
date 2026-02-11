@@ -8,13 +8,11 @@ manifest:
       url-base: https://github.com/zmkfirmware
     - name: sayu-hub
       url-base: https://github.com/sayu-hub
-    - name: badjeff    # <-- PMW3610
+    - name: badjeff
       url-base: https://github.com/badjeff
-    # - name: sekigon-gonnoc  # <-- PAW3222
-    #   url-base: https://github.com/sekigon-gonnoc
-    - name: caksoylar  # <-- RGB LED
-      url-base: https://github.com/caksoylar  
-    - name: zettaface  # <-- Input Processor Keybind
+    - name: caksoylar
+      url-base: https://github.com/caksoylar
+    - name: zettaface
       url-base: https://github.com/zettaface
   projects:
     # ZMK: DYA Studio 用カスタム RPC サブシステム付き cormoran fork
@@ -22,10 +20,13 @@ manifest:
       remote: cormoran
       revision: v0.3-branch+dya
       import: app/west.yml
+    
+    # トラックボール用ドライバー
     - name: zmk-pmw3610-driver
       remote: badjeff
       revision: main
-    # DYA Studio モジュール（すべて cormoran リポジトリ）
+
+    # DYA Studio モジュール
     - name: zmk-module-ble-management
       remote: cormoran
       revision: main
