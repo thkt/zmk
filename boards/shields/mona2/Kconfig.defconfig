@@ -19,6 +19,7 @@ config SPI
     default y
 
 config PMW3610
+    bool
     default y
 
 endif
@@ -32,9 +33,11 @@ config ZMK_SPLIT
     default y
 
 config RGBLED_WIDGET_BATTERY_LEVEL_HIGH
+    int
     default 30
 
 config RGBLED_WIDGET_BATTERY_LEVEL_CRITICAL
+    int
     default 10
 
 endif
