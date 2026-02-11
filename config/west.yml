@@ -1,4 +1,6 @@
 manifest:
+  defaults:
+    revision: main
   remotes:
     - name: cormoran
       url-base: https://github.com/cormoran
