@@ -4,8 +4,7 @@
 #include <behaviors/battery_history_request.dtsi>
 #include <zephyr/dt-bindings/input/input-event-codes.h>
 
-/* mona2.dtsi にある trackball_central_listener を上書き設定します */
-&trackball_central_listener {
+&trackball_listener {
     status = "okay";               // 有効化
     device = <&trackball_central>; // デバイスを正しく紐付け
     
