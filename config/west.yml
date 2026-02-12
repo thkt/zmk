@@ -14,8 +14,6 @@ manifest:
       url-base: https://github.com/caksoylar
     - name: zettaface
       url-base: https://github.com/zettaface
-    - name: nanopb
-      url-base: https://github.com/nanopb
   projects:
     # ZMK: DYA Studio 用カスタム RPC サブシステム付き cormoran fork
     - name: zmk
@@ -27,10 +25,6 @@ manifest:
     - name: zmk-behavior-runtime-sensor-rotate
       remote: cormoran
       revision: main
-
-    - name: nanopb
-      remote: nanopb
-      revision: master
 
     # トラックボール用ドライバー
     - name: zmk-pmw3610-driver
