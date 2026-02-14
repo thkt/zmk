@@ -75,7 +75,6 @@
     
     kscan0: kscan {
         compatible = "zmk,kscan-gpio-matrix";
-        label = "KSCAN";
         diode-direction = "col2row";
             row-gpios
                 = <&xiao_d 1 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> 
@@ -85,15 +84,10 @@
                 ;
     };
 
-    //right hand trackball
+    /* トラックボール（右側）— mona2_r.overlay で有効化・input-processors を上書き */
     trackball_listener: trackball_listener {
         compatible = "zmk,input-listener";
         status = "disabled";
-        input-processors = 
-            <&zip_xy_transform INPUT_TRANSFORM_Y_INVERT>;         //Y軸反転
-            //<&zip_xy_transform INPUT_TRANSFORM_XY_SWAP>,        //X軸とY軸の入れ替え
-            //<&zip_xy_transform INPUT_TRANSFORM_X_INVERT>,       //X軸反転
-            //<&zip_temp_layer 5 500>;                            //オートマウスレイヤーの選択
     };
 
     left_encoder: encoder_left {
@@ -104,6 +98,7 @@
         status = "disabled";
     };
 
+    /* 右側エンコーダ（未実装ハードウェア）— sensors ノードのインデックス維持用スタブ */
     right_encoder: encoder_right {
         status = "disabled";
     };

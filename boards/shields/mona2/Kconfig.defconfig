@@ -1,3 +1,6 @@
+# 右半分が Central（トラックボール・USB 接続側）。
+# 通常の ZMK split keyboard では左が Central だが、moNa2 ではトラックボールが
+# 右側にあるため右を Central として設定。
 if SHIELD_MONA2_R
 
 config ZMK_KEYBOARD_NAME
@@ -22,12 +25,13 @@ config PMW3610
     bool
     default y
 
+# Driver-level inversion disabled — managed by input-processors in mona2_r.overlay
 config PMW3610_INVERT_X
-    bool "Invert Trackball X"
+    bool
     default n
 
 config PMW3610_INVERT_Y
-    bool "Invert Trackball Y"
+    bool
     default n
 
 endif

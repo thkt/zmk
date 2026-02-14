@@ -1,16 +1,17 @@
 #include "mona2.dtsi"
-#include <input/processors.dtsi>
 #include <input/processors/runtime-input-processor.dtsi>
 #include <behaviors/battery_history_request.dtsi>
 #include <zephyr/dt-bindings/input/input-event-codes.h>
 
 &trackball_listener {
-    status = "okay";               // 有効化
-    device = <&trackball_central>; // デバイスを正しく紐付け
+    status = "okay";
+    device = <&trackball_central>;
     
-    /* 通常カーソル移動用の runtime input processor */
+    /* 通常カーソル移動用の runtime input processor
+     * 軸反転はここで統一管理（Kconfig の PMW3610_INVERT_X/Y は使用しない）
+     */
     input-processors =
-        <&zip_xy_transform INPUT_TRANSFORM_Y_INVERT>,
+        <&zip_xy_transform (INPUT_TRANSFORM_X_INVERT | INPUT_TRANSFORM_Y_INVERT)>,
         <&mouse_runtime_input_processor>;
 
     /* Layer 2 をスクロールレイヤーにする設定 */
@@ -21,7 +22,7 @@
             <&zip_xy_transform INPUT_TRANSFORM_X_INVERT>,       //X軸反転
             <&zip_xy_to_scroll_mapper>,                         //スクロールモードに変更
             <&zip_scroll_transform INPUT_TRANSFORM_X_INVERT>,   //スクロールのX軸反転
-            <&zip_scroll_scaler 1 5>;                           //スクロール量を1/4倍
+            <&zip_scroll_scaler 1 5>;                           //スクロール量を1/5倍
     };
 };
 
@@ -39,6 +40,9 @@
         ;
 };
 
+/* 半二重 SPI: PMW3610 の SDIO ライン用に MOSI/MISO を同一ピン (P0.04) に割り当て。
+ * この SPI バスに他のデバイスを追加しないこと。
+ */
 &pinctrl {
     spi0_default: spi0_default {
         group1 {
