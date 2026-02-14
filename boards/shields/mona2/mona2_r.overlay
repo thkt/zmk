@@ -11,7 +11,7 @@
      * 軸反転はここで統一管理（Kconfig の PMW3610_INVERT_X/Y は使用しない）
      */
     input-processors =
-        <&zip_xy_transform (INPUT_TRANSFORM_X_INVERT | INPUT_TRANSFORM_Y_INVERT)>,
+        <&zip_xy_transform INPUT_TRANSFORM_X_INVERT>,
         <&mouse_runtime_input_processor>;
 
     /* Layer 2 をスクロールレイヤーにする設定 */
@@ -19,9 +19,8 @@
         layers = <2>;
         input-processors = 
             // <&zip_xy_transform INPUT_TRANSFORM_XY_SWAP>,     //X軸とY軸の入れ替え
-            <&zip_xy_transform INPUT_TRANSFORM_X_INVERT>,       //X軸反転
-            <&zip_xy_to_scroll_mapper>,                         //スクロールモードに変更
-            <&zip_scroll_transform INPUT_TRANSFORM_X_INVERT>,   //スクロールのX軸反転
+            <&zip_xy_transform INPUT_TRANSFORM_Y_INVERT>,
+            <&zip_xy_to_scroll_mapper>,
             <&zip_scroll_scaler 1 5>;                           //スクロール量を1/5倍
     };
 };
