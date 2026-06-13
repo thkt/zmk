@@ -34,6 +34,8 @@ manifest:
     # ── DYA Studio モジュール（オプション: Studio UI 連携用）──────
     - name: zmk-module-ble-management
       remote: cormoran
+      # main は ZMK v0.3 に無い zmk_endpoint_*_preferred_transport を参照しリンク不可
+      revision: zmk-v0.3.0.0
     - name: zmk-module-battery-history
       remote: cormoran
     - name: zmk-module-settings-rpc
