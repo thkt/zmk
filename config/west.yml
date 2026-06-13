@@ -40,5 +40,7 @@ manifest:
       remote: cormoran
     - name: zmk-module-runtime-input-processor
       remote: cormoran
+      # ZMK v0.3 では zmk_keymap_layer_activate が 1 引数。main は 2 引数呼び出しでビルド不可
+      revision: zmk-v0.3.0.0
   self:
     path: config
