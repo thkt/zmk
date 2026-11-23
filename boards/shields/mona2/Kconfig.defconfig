@@ -45,15 +45,12 @@ config ZMK_SPLIT
     default y
 
 config RGBLED_WIDGET_BATTERY_LEVEL_HIGH
-    int "Battery High Level"
     default 30
 
 config RGBLED_WIDGET_BATTERY_LEVEL_CRITICAL
-    int "Battery Critical Level"
     default 10
 
 config RGBLED_WIDGET_SHOW_LAYER_COLORS
-    bool "Show Layer Colors"
     default y
 
 endif

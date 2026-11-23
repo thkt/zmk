@@ -20,10 +20,10 @@ manifest:
       revision: v0.3-branch+dya
       import: app/west.yml
 
-    # ── Behavior ──────────────────────────────────────────────────
-    # runtime sensor rotate モジュール本体
-    - name: zmk-behavior-runtime-sensor-rotate
-      remote: cormoran
+    # ── Widget ────────────────────────────────────────────────────
+    - name: zmk-rgbled-widget
+      remote: caksoylar
+      revision: v0.3
 
     # ── Driver ────────────────────────────────────────────────────
     # トラックボール用ドライバー
