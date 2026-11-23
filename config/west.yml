@@ -20,10 +20,10 @@ manifest:
       revision: v0.3-branch+dya
       import: app/west.yml
 
-    # ── Behavior ──────────────────────────────────────────────────
-    # runtime sensor rotate モジュール本体
-    - name: zmk-behavior-runtime-sensor-rotate
-      remote: cormoran
+    # ── Widget ────────────────────────────────────────────────────
+    - name: zmk-rgbled-widget
+      remote: caksoylar
+      revision: v0.3
 
     # ── Driver ────────────────────────────────────────────────────
     # トラックボール用ドライバー
@@ -38,8 +38,10 @@ manifest:
       revision: zmk-v0.3.0.0
     - name: zmk-module-battery-history
       remote: cormoran
+      revision: 307755dd2ad4d320e14de162e8e5ef018f29d929
     - name: zmk-module-settings-rpc
       remote: cormoran
+      revision: zmk-v0.3.0.0
     - name: zmk-module-runtime-input-processor
       remote: cormoran
       # ZMK v0.3 では zmk_keymap_layer_activate が 1 引数。main は 2 引数呼び出しでビルド不可
