@@ -1,10 +1,10 @@
 ---
 include:
-  - board: seeeduino_xiao_ble
+  - board: xiao_ble/nrf52840/zmk
     shield: mona2_r rgbled_adapter
     snippet: studio-rpc-usb-uart
-  - board: seeeduino_xiao_ble
+  - board: xiao_ble/nrf52840/zmk
     shield: mona2_l rgbled_adapter
     # Peripheral 側は BLE 経由で Central と通信するため studio-rpc-usb-uart は不要
-  - board: seeeduino_xiao_ble
+  - board: xiao_ble/nrf52840/zmk
     shield: settings_reset

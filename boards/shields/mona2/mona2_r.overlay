@@ -1,6 +1,5 @@
 #include "mona2.dtsi"
 #include <input/processors/runtime-input-processor.dtsi>
-#include <behaviors/battery_history_request.dtsi>
 #include <zephyr/dt-bindings/input/input-event-codes.h>
 
 &trackball_listener {
@@ -8,7 +7,7 @@
     device = <&trackball_central>;
     
     /* 通常カーソル移動用の runtime input processor
-     * 軸反転はここで統一管理（Kconfig の PMW3610_INVERT_X/Y は使用しない）
+     * 軸反転はここで統一管理（Kconfig の PMW3610_ALT_INVERT_X/Y は使用しない）
      */
     input-processors =
         <&zip_xy_transform INPUT_TRANSFORM_X_INVERT>,
@@ -71,7 +70,7 @@
 
     trackball_central: trackball_central@0 {
         status = "okay";
-        compatible = "pixart,pmw3610";
+        compatible = "pixart,pmw3610-alt";
         reg = <0>;
         spi-max-frequency = <2000000>;
         irq-gpios = <&gpio0 2 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;

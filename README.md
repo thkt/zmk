@@ -19,7 +19,7 @@ moNa2 split keyboard の ZMK ファームウェア設定。
 ## 機能
 
 - DYA Studio 対応（[cormoran/zmk](https://github.com/cormoran/zmk) フォーク使用）
-  - BLE 管理 / バッテリー履歴 / Settings RPC / Runtime Input Processor
+  - BLE 管理 / Settings RPC / Runtime Input Processor
 - トラックボール（PMW3610）+ スクロールレイヤー（Layer 2）
 - ロータリーエンコーダ（左側）
 - ZMK Studio 対応
@@ -33,8 +33,8 @@ GitHub Actions による自動ビルド（push / PR 時）。ファームウェ�
 ```bash
 west init -l config
 west update
-west build -d build/right -s zmk/app -b seeeduino_xiao_ble -- -DSHIELD="mona2_r rgbled_adapter" -DSNIPPET=studio-rpc-usb-uart
-west build -d build/left -s zmk/app -b seeeduino_xiao_ble -- -DSHIELD="mona2_l rgbled_adapter"
+west build -d build/right -s zmk/app -b xiao_ble/nrf52840/zmk -- -DSHIELD="mona2_r rgbled_adapter" -DSNIPPET=studio-rpc-usb-uart
+west build -d build/left -s zmk/app -b xiao_ble/nrf52840/zmk -- -DSHIELD="mona2_l rgbled_adapter"
 ```
 
 ## フラッシュ
@@ -71,10 +71,10 @@ COROPIT 版ではトラックボールの取り付け方向が異なるため、
 
 | カテゴリ | モジュール | 用途 |
 | ---------- | ----------- | ------ |
-| Core | cormoran/zmk | DYA Studio 対応 ZMK フォーク |
+| Core | cormoran/zmk | DYA Studio 対応 ZMK フォーク（v0.4 系） |
 | Widget | zmk-rgbled-widget (caksoylar) | RGB LED によるバッテリー・接続状態・レイヤー表示 |
 | Driver | zmk-pmw3610-driver (badjeff) | PMW3610 トラックボールドライバー |
 | DYA Studio | zmk-module-ble-management | BLE 管理 UI |
-| DYA Studio | zmk-module-battery-history | バッテリー履歴 UI |
+| DYA Studio | zmk-feature-custom-settings | 設定の保存基盤 |
 | DYA Studio | zmk-module-settings-rpc | アイドル/スリープ設定 |
 | DYA Studio | zmk-module-runtime-input-processor | トラックボール設定 UI |

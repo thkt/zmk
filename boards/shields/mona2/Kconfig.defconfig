@@ -21,16 +21,16 @@ config ZMK_POINTING
 config SPI
     default y
 
-config PMW3610
+config PMW3610_ALT
     bool
     default y
 
 # Driver-level inversion disabled — managed by input-processors in mona2_r.overlay
-config PMW3610_INVERT_X
+config PMW3610_ALT_INVERT_X
     bool
     default n
 
-config PMW3610_INVERT_Y
+config PMW3610_ALT_INVERT_Y
     bool
     default n
 
