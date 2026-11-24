@@ -2,6 +2,7 @@
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/pointing.h>
+#include <behaviors/runtime-sensor-rotate.dtsi>
 
 #define ZMK_POINTING_DEFAULT_SCRL_VAL 100
 #define MOUSE 6
@@ -41,12 +42,27 @@
             tapping-term-ms = <200>;
         };
 
-        scroll_up_down: behavior_sensor_rotate_mouse_wheel_up_down {
-            compatible = "zmk,behavior-sensor-rotate";
+        rsr_scroll: rsr_scroll {
+            compatible = "zmk,behavior-runtime-sensor-rotate";
             #sensor-binding-cells = <0>;
-            bindings = <&msc SCRL_UP>, <&msc SCRL_DOWN>;
+            cw-binding = <&msc SCRL_UP>;
+            ccw-binding = <&msc SCRL_DOWN>;
 
             tap-ms = <20>;
+        };
+
+        rsr_volume: rsr_volume {
+            compatible = "zmk,behavior-runtime-sensor-rotate";
+            #sensor-binding-cells = <0>;
+            cw-binding = <&kp C_VOLUME_DOWN>;
+            ccw-binding = <&kp C_VOLUME_UP>;
+        };
+
+        rsr_zoom: rsr_zoom {
+            compatible = "zmk,behavior-runtime-sensor-rotate";
+            #sensor-binding-cells = <0>;
+            cw-binding = <&kp RG(MINUS)>;
+            ccw-binding = <&kp RG(PLUS)>;
         };
     };
 
@@ -61,7 +77,7 @@
 &kp LEFT_SHIFT  &kp LEFT_CONTROL  &kp LEFT_ALT  &kp TAB  &mt LEFT_COMMAND LANGUAGE_1  &lt 2 LANGUAGE_2    &mt RS(RA(RC(RIGHT_GUI))) ESCAPE  &lt 1 SPACE                               &kp PERIOD
             >;
 
-            sensor-bindings = <&scroll_up_down>;
+            sensor-bindings = <&rsr_scroll>;
         };
 
         layer_1 {
@@ -72,7 +88,7 @@
 &kp LEFT_SHIFT  &kp LEFT_CONTROL  &kp LEFT_ALT   &kp TAB          &mt LEFT_COMMAND LANGUAGE_1  &kp LANGUAGE_2    &mt RS(RA(RC(RIGHT_GUI))) ESCAPE  &trans                                                                      &trans
             >;
 
-            sensor-bindings = <&inc_dec_kp C_VOLUME_DOWN C_VOLUME_UP>;
+            sensor-bindings = <&rsr_volume>;
         };
 
         layer_2 {
@@ -83,7 +99,7 @@
 &kp LEFT_SHIFT    &kp LEFT_CONTROL  &kp NUMBER_0  &kp TAB       &mt LEFT_COMMAND LANGUAGE_1  &trans    &kp ESCAPE  &mt RS(RA(RC(RIGHT_GUI))) SPACE                                                   &kp PERIOD
             >;
 
-            sensor-bindings = <&inc_dec_kp RG(MINUS) RG(PLUS)>;
+            sensor-bindings = <&rsr_zoom>;
         };
 
         layer_3 {
@@ -93,6 +109,8 @@
 &trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
 &trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans                          &trans
             >;
+
+            sensor-bindings = <&rsr_trans>;
         };
 
         layer_4 {
@@ -103,7 +121,7 @@
 &trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans                                                  &trans
             >;
 
-            sensor-bindings = <&scroll_up_down>;
+            sensor-bindings = <&rsr_scroll>;
         };
 
         layer_5 {
@@ -114,7 +132,7 @@
 &trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans                          &trans
             >;
 
-            sensor-bindings = <&scroll_up_down>;
+            sensor-bindings = <&rsr_scroll>;
         };
 
         MOUSE {
@@ -125,7 +143,7 @@
 &trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans                          &trans
             >;
 
-            sensor-bindings = <&scroll_up_down>;
+            sensor-bindings = <&rsr_scroll>;
         };
     };
 };

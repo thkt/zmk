@@ -6,22 +6,27 @@
     status = "okay";
     device = <&trackball_central>;
     
-    /* 通常カーソル移動用の runtime input processor
-     * 軸反転はここで統一管理（Kconfig の PMW3610_ALT_INVERT_X/Y は使用しない）
+    /* 軸反転はここで統一管理（Kconfig の PMW3610_ALT_INVERT_X/Y は使用しない）
+     * scroll を mouse より先に置く。scroll が対象レイヤーで REL_X/Y を WHEEL に
+     * 変換するため、mouse の感度設定がスクロール量に掛からない。
      */
     input-processors =
         <&zip_xy_transform INPUT_TRANSFORM_X_INVERT>,
+        <&scroll_runtime_input_processor>,
         <&mouse_runtime_input_processor>;
+};
 
-    /* Layer 2 をスクロールレイヤーにする設定 */
-    scroller {
-        layers = <2>;
-        input-processors = 
-            // <&zip_xy_transform INPUT_TRANSFORM_XY_SWAP>,     //X軸とY軸の入れ替え
-            <&zip_xy_transform (INPUT_TRANSFORM_X_INVERT | INPUT_TRANSFORM_Y_INVERT)>,
-            <&zip_xy_to_scroll_mapper>,
-            <&zip_scroll_scaler 1 5>;                           //スクロール量を1/5倍
-    };
+/* スクロールの対象レイヤーと速度の初期値。DYA Studio から変更できる。
+ * active-layers はレイヤー番号のビットマスク（0x4 = Layer 2）。
+ */
+&scroll_runtime_input_processor {
+    x-codes = <INPUT_REL_X>;
+    y-codes = <INPUT_REL_Y>;
+    xy-to-scroll-enabled;
+    y-invert;
+    active-layers = <0x00000004>;
+    scale-multiplier = <1>;
+    scale-divisor = <5>;
 };
 
 &default_transform {
