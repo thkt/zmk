@@ -4,14 +4,12 @@ manifest:
   remotes:
     - name: cormoran
       url-base: https://github.com/cormoran
-    - name: sayu-hub
-      url-base: https://github.com/sayu-hub
     - name: badjeff
       url-base: https://github.com/badjeff
     - name: caksoylar
       url-base: https://github.com/caksoylar
-    - name: zettaface
-      url-base: https://github.com/zettaface
+    - name: zmkfirmware
+      url-base: https://github.com/zmkfirmware
   projects:
     # ── Core ──────────────────────────────────────────────────────
     # ZMK: DYA Studio 用カスタム RPC サブシステム付き cormoran fork（v0.4 系、Zephyr 4.1）
@@ -19,6 +17,32 @@ manifest:
       remote: cormoran
       revision: e5c9b6915b56801193e359dd9bad4a167ce0d1b8 # main+dya
       import: app/west.yml
+
+    # zmk の app/west.yml はブランチ名で指定するため、ここで SHA に固定する。
+    # import の name-blocklist は app/west.yml と同じ内容を保つ
+    - name: zephyr
+      remote: zmkfirmware
+      revision: 10ba6d0cb38bc3d258775d27982f707599320085 # v4.1.0+zmk-fixes
+      clone-depth: 1
+      import:
+        name-blocklist:
+          - ci-tools
+          - hal_altera
+          - hal_cypress
+          - hal_infineon
+          - hal_microchip
+          - hal_nxp
+          - hal_openisa
+          - hal_xtensa
+          - hal_st
+          - hal_ti
+          - loramac-node
+          - mcuboot
+          - mcumgr
+          - net-tools
+          - openthread
+          - edtt
+          - trusted-firmware-m
 
     # ── Widget ────────────────────────────────────────────────────
     - name: zmk-rgbled-widget
