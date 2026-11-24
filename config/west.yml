@@ -4,47 +4,70 @@ manifest:
   remotes:
     - name: cormoran
       url-base: https://github.com/cormoran
-    - name: sayu-hub
-      url-base: https://github.com/sayu-hub
     - name: badjeff
       url-base: https://github.com/badjeff
     - name: caksoylar
       url-base: https://github.com/caksoylar
-    - name: zettaface
-      url-base: https://github.com/zettaface
+    - name: zmkfirmware
+      url-base: https://github.com/zmkfirmware
   projects:
     # ── Core ──────────────────────────────────────────────────────
-    # ZMK: DYA Studio 用カスタム RPC サブシステム付き cormoran fork
+    # ZMK: DYA Studio 用カスタム RPC サブシステム付き cormoran fork（v0.4 系、Zephyr 4.1）
     - name: zmk
       remote: cormoran
-      revision: v0.3-branch+dya
+      revision: e5c9b6915b56801193e359dd9bad4a167ce0d1b8 # main+dya
       import: app/west.yml
+
+    # zmk の app/west.yml はブランチ名で指定するため、ここで SHA に固定する。
+    # import の name-blocklist は app/west.yml と同じ内容を保つ
+    - name: zephyr
+      remote: zmkfirmware
+      revision: 10ba6d0cb38bc3d258775d27982f707599320085 # v4.1.0+zmk-fixes
+      clone-depth: 1
+      import:
+        name-blocklist:
+          - ci-tools
+          - hal_altera
+          - hal_cypress
+          - hal_infineon
+          - hal_microchip
+          - hal_nxp
+          - hal_openisa
+          - hal_xtensa
+          - hal_st
+          - hal_ti
+          - loramac-node
+          - mcuboot
+          - mcumgr
+          - net-tools
+          - openthread
+          - edtt
+          - trusted-firmware-m
 
     # ── Widget ────────────────────────────────────────────────────
     - name: zmk-rgbled-widget
       remote: caksoylar
-      revision: v0.3
+      revision: e6b467792a1dabef8cfa5c9fd26bfefc9c16662b # main
 
     # ── Driver ────────────────────────────────────────────────────
     # トラックボール用ドライバー
     - name: zmk-pmw3610-driver
       remote: badjeff
-      revision: zmk-0.3
+      revision: 44b4a76b74d293a93cec4ccb7e04cb8d29c10f93 # main
 
-    # ── DYA Studio モジュール（オプション: Studio UI 連携用）──────
+    # ── DYA Studio モジュール ─────────────────────────────────────
+    # 設定の永続化。runtime-input-processor が必要とする
+    - name: zmk-feature-custom-settings
+      remote: cormoran
+      revision: c6a7fef3a3be3d3ace5de9a4b0628c6418cd1f3f # main
     - name: zmk-module-ble-management
       remote: cormoran
-      # main は ZMK v0.3 に無い zmk_endpoint_*_preferred_transport を参照しリンク不可
-      revision: zmk-v0.3.0.0
-    - name: zmk-module-battery-history
-      remote: cormoran
-      revision: 307755dd2ad4d320e14de162e8e5ef018f29d929
+      revision: 57738cc4fc6ba80e82a7ac57741a0339cb186cd4 # main
     - name: zmk-module-settings-rpc
       remote: cormoran
-      revision: zmk-v0.3.0.0
+      revision: 78f86df9e6c5edaf57bef3ccbd7f360cfdf49291 # main
     - name: zmk-module-runtime-input-processor
       remote: cormoran
-      # ZMK v0.3 では zmk_keymap_layer_activate が 1 引数。main は 2 引数呼び出しでビルド不可
-      revision: zmk-v0.3.0.0
+      revision: 43618985f8c9d5457cc333b7ca0733f2d361911e # main
   self:
     path: config
