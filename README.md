@@ -48,7 +48,7 @@ west build -d build/left -s zmk/app -b xiao_ble/nrf52840/zmk -- -DSHIELD="mona2_
 
 1. 右側を USB で PC に接続
 2. PC の Bluetooth 設定から「mona2」を検索・ペアリング
-3. 最大3つのホストプロファイル + DYA Studio 接続に対応
+3. 最大4つのホストプロファイルに対応（Layer 4 の `BT_SEL 0`〜`3` で切り替え）
 
 ## Settings Reset
 
