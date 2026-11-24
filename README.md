@@ -54,6 +54,32 @@ west build -d build/left -s zmk/app -b xiao_ble/nrf52840/zmk -- -DSHIELD="mona2_
 
 ペアリング情報をリセットする場合は `settings_reset` ファームウェアを両側にフラッシュしてから通常ファームウェアを再フラッシュ。
 
+## BLE 切断の調査
+
+切断の理由コードを USB シリアルのログで確認する。`mona2_r-usb-logging.uf2`（右）と `mona2_l-usb-logging.uf2`（左）がログ出力付きのファームウェア。右のログ用ファームウェアは USB 経由の Studio 接続を持たない。
+
+1. 調べたい側にログ用ファームウェアを書き込む
+2. その側を USB で PC に接続する
+3. `ls /dev/tty.usbmodem*` でデバイス名を調べる
+4. `screen /dev/tty.usbmodemXXXX 115200` でログを表示する
+5. 切断が起きた時刻の行を読む
+
+| ログの行 | 出力する側 | 意味 |
+| -------- | ---------- | ---- |
+| `Disconnected: <addr> (reason N)` | 右 | 左右間リンクの切断。N は 10 進数 |
+| `Disconnected from <addr> (reason 0xNN)` | 右 | ホストとの接続の切断 |
+| `Disconnected from <addr> (reason 0xNN)` | 左 | 左右間リンクの切断 |
+| `New connection params: Interval: ...` | 右 | 左右間リンクで実際に使われている接続パラメータ |
+| `*** Booting Zephyr OS` が途中で再び出る | 両方 | ファームウェアが再起動した |
+
+| 理由コード | 意味 |
+| ---------- | ---- |
+| 0x08（8） | supervision timeout。相手からの電波が届かなくなった |
+| 0x13（19） | 相手側が切断した |
+| 0x16（22） | 自分側が切断した |
+| 0x22（34） | リンク層の応答待ちがタイムアウトした |
+| 0x3e（62） | 接続を確立できなかった |
+
 ## COROPIT 版の設定
 
 COROPIT を使用する場合、`boards/shields/mona2/mona2_r.overlay` の trackball_listener で軸反転を調整してください。
