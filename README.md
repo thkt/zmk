@@ -20,6 +20,7 @@ moNa2 split keyboard の ZMK ファームウェア設定。
 
 - DYA Studio 対応（[cormoran/zmk](https://github.com/cormoran/zmk) フォーク使用）
   - BLE 管理 / Settings RPC / Runtime Input Processor / Runtime Sensor Rotate
+  - 診断: フリーズ・クラッシュ・予期しないリセットの記録（Watchdog）/ スタック使用量（Devtool）
 - トラックボール（PMW3610）+ スクロールレイヤー（初期値は Layer 2、対象レイヤーと速度を DYA Studio から変更可能）
 - ロータリーエンコーダ（左側、レイヤーごとの回転動作を DYA Studio から変更可能）
 - ZMK Studio 対応
@@ -79,3 +80,5 @@ COROPIT 版ではトラックボールの取り付け方向が異なるため、
 | DYA Studio | zmk-module-settings-rpc | アイドル/スリープ設定 |
 | DYA Studio | zmk-module-runtime-input-processor | トラックボールとスクロールの設定 UI |
 | DYA Studio | zmk-behavior-runtime-sensor-rotate | エンコーダの回転動作の設定 UI |
+| DYA Studio | zmk-feature-watchdog | フリーズ・クラッシュ・予期しないリセットの記録 |
+| DYA Studio | zmk-module-devtool | スタック使用量の表示 |
